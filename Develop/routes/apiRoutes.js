@@ -1,18 +1,33 @@
-var noteDb = require("db/db.json");
+const noteData = require("../db/db.json");
+const fs = require("fs");
 
 module.exports = function (app) {
 
     // Should read the`db.json` file
     // return all saved notes as JSON
+
+
     app.get("/api/notes", function (req, res) {
-        res.json(noteDb);
+        console.log('getting notes')
+        fs.readFile(("../db/db.json"), function (err, data) {
+            if (err) {
+
+                throw err
+            } else {
+                console.log(data)
+            }
+        }
+        );
+
+        res.json(noteData);
     });
 
     // Should receive a new note to save on the request body
     // add it to the`db.json` file
     // then return the new note to the client
     app.post("/api/notes", function (req, res) {
-
+        fs.writeFile(("../db/db.json"), req.body);
+        res.json(req.body);
     });
 
     // Should receive a query parameter containing the id of a note to delete
@@ -23,3 +38,5 @@ module.exports = function (app) {
     app.delete("/api/notes/:id", function (req, res) {
 
     });
+
+};
