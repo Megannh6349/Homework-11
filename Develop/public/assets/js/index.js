@@ -141,19 +141,3 @@ $noteText.on("keyup", handleRenderSaveBtn);
 
 // Gets and renders the initial list of notes
 getAndRenderNotes();
-
-
-// PSEUDOCODE
-
-
-
-// // create routes
-// const note = [];
-// app.get('/route', (req, res, next) => {
-// const something = getElementById(req.params.id, note);
-// if (note?) {
-//   res.send(note);
-// } else {
-//   res.status(404).send();
-// }
-// });
